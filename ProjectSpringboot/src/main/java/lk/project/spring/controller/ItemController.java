@@ -29,9 +29,9 @@ public class ItemController {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateItem(@ModelAttribute ItemDto item) {
+    public ResponseUtil updateItem(@RequestBody ItemDto item) {
         itemService.updateItem(item);
-        return new ResponseUtil(200,"Save",null);
+        return new ResponseUtil(200,"updated",null);
     }
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,5 +40,9 @@ public class ItemController {
         return new ResponseUtil(200,"Deleted",null);
     }
 
+    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil serarchItem(@PathVariable String id) {
+        return new ResponseUtil(200,"OK",itemService.serarchItem(id));
+    }
 
 }

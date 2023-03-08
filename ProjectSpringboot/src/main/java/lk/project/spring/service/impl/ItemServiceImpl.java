@@ -46,7 +46,7 @@ public class ItemServiceImpl implements ItemService {
         if (repo.existsById(dto.getItemid())) {
             repo.save(mapper.map(dto,Item.class));
         } else {
-
+             throw new RuntimeException("No Such FoodMeal To Update..! Please Check the ID..!");
         }
     }
 
